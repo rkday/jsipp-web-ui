@@ -26,6 +26,14 @@
    [:td (:timedout m)]
    [:td 0]])
 
+(defn rtcp-row-from-details [{:keys [avg-jitter hwm-jitter avg-packets-lost avg-packets-out-of-sequence]}]
+  [:tr
+   [:td avg-jitter]
+   [:td hwm-jitter]
+   [:td (str (* 100 avg-packets-lost) "%")]
+   [:td (str (* 100 avg-packets-out-of-sequence) "%")]])
+
+
 (defn make-cumulative [periodic-data]
   (reduce
    (fn [curr [x y]]
@@ -58,7 +66,6 @@
   (graph (make-cumulative successful) (make-cumulative failed) div-name))
 
 (defn graph-both [successful failed div-name cumulative-div-name]
-  (.log js/console successful)
   (graph successful failed div-name)
   (cumulative-graph successful failed cumulative-div-name))
 
@@ -74,7 +81,7 @@
 
 (go
  (.log js/console "Hello world")
- (let [ws (<! (ws-ch "ws://localhost:5000/ws"))]
+ (let [ws (<! (ws-ch "ws://127.0.0.1:5000/ws"))]
    (loop [data (:message (<! ws))]
      (when data
        (do
@@ -86,6 +93,9 @@
           (update-scenario data)
           (dommy/clear! (sel1 :#data-body))
           (dommy/append! (sel1 :#data-body) (map row-from-details @updating-scenario))
+          (dommy/clear! (sel1 :#rtcp-table-body))
+          (dommy/append! (sel1 :#rtcp-table-body) (rtcp-row-from-details (:rtcp data)))
+          (.log js/console (pr-str (rtcp-row-from-details (:rtcp data))))
           (recur (:message (<! ws)))))
      ))
 )

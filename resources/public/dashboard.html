@@ -53,8 +53,25 @@
           <h1 class="page-header">SIPp Web Dashboard</h1>
 
           <div class="row">
-            <div id="flot" style="width:600px;height:300px"></div>
-            <div id="flot-periodic" style="width:600px;height:300px"></div>
+            <div id="flot" style="width:400px;height:300px"></div>
+            <div id="flot-periodic" style="width:400px;height:300px"></div>
+          </div>
+
+          <h2 class="sub-header">RTP stats (calculated from recent calls)</h2>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Average jitter</th>
+                  <th>High-water-mark jitter</th>
+                  <th>Average packets lost (% of all expected packets)</th>
+                  <th>Average packets delivered out of order (% of all packets
+                  seen)</th>
+                </tr>
+              </thead>
+              <tbody id="rtcp-table-body">
+              </tbody>
+            </table>
           </div>
 
           <h2 class="sub-header">Per-message details</h2>

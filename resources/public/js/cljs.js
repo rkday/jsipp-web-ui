@@ -20711,6 +20711,13 @@ hello_clojurescript.row_from_details = function(a) {
   "\x3c---" : ""], null), new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "td", "td", 1013907938), (new cljs.core.Keyword(null, "msg", "msg", 1014012659)).cljs$core$IFn$_invoke$arity$1(a)], null), new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "td", "td", 1013907938), (new cljs.core.Keyword(null, "timedout", "timedout", 3231988777)).cljs$core$IFn$_invoke$arity$1(a)], null), 
   new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "td", "td", 1013907938), 0], null)], null);
 };
+hello_clojurescript.rtcp_row_from_details = function(a) {
+  var b = cljs.core.seq_QMARK_.call(null, a) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a;
+  a = cljs.core.get.call(null, b, new cljs.core.Keyword(null, "avg-packets-out-of-sequence", "avg-packets-out-of-sequence", 1685426061));
+  var c = cljs.core.get.call(null, b, new cljs.core.Keyword(null, "avg-packets-lost", "avg-packets-lost", 3784327507)), d = cljs.core.get.call(null, b, new cljs.core.Keyword(null, "hwm-jitter", "hwm-jitter", 2823608269)), b = cljs.core.get.call(null, b, new cljs.core.Keyword(null, "avg-jitter", "avg-jitter", 4139729849));
+  return new cljs.core.PersistentVector(null, 5, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "tr", "tr", 1013907952), new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "td", "td", 1013907938), b], null), new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "td", "td", 1013907938), d], null), new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, 
+  [new cljs.core.Keyword(null, "td", "td", 1013907938), [cljs.core.str(100 * c), cljs.core.str("%")].join("")], null), new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "td", "td", 1013907938), [cljs.core.str(100 * a), cljs.core.str("%")].join("")], null)], null);
+};
 hello_clojurescript.make_cumulative = function(a) {
   return cljs.core.reduce.call(null, function(a, c) {
     var d = cljs.core.nth.call(null, c, 0, null), e = cljs.core.nth.call(null, c, 1, null), f = cljs.core.last.call(null, a);
@@ -20735,7 +20742,6 @@ hello_clojurescript.cumulative_graph = function(a, b, c) {
   return hello_clojurescript.graph.call(null, hello_clojurescript.make_cumulative.call(null, a), hello_clojurescript.make_cumulative.call(null, b), c);
 };
 hello_clojurescript.graph_both = function(a, b, c, d) {
-  console.log(a);
   hello_clojurescript.graph.call(null, a, b, c);
   return hello_clojurescript.cumulative_graph.call(null, a, b, d);
 };
@@ -20749,13 +20755,13 @@ hello_clojurescript.update_scenario = function(a) {
     }, cljs.core.partition.call(null, 2, cljs.core.interleave.call(null, b, (new cljs.core.Keyword(null, "scenario", "scenario", 4533282562)).cljs$core$IFn$_invoke$arity$1(a))));
   });
 };
-var c__5698__auto___9091 = cljs.core.async.chan.call(null, 1);
+var c__5698__auto___9104 = cljs.core.async.chan.call(null, 1);
 cljs.core.async.impl.dispatch.run.call(null, function() {
   var a = function() {
     return function(a) {
       return function() {
         var b = null, e = function() {
-          var a = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
+          var a = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
           a[0] = b;
           a[1] = 1;
           return a;
@@ -20812,21 +20818,25 @@ cljs.core.async.impl.dispatch.run.call(null, function() {
         return a[2] = null, a[1] = 8, new cljs.core.Keyword(null, "recur", "recur", 1122293407);
       }
       if (6 === b) {
-        var b = a[8], e = a[7], f = hello_clojurescript.update_successful_and_failed.call(null, e), g = cljs.core.deref.call(null, hello_clojurescript.successful), h = cljs.core.deref.call(null, hello_clojurescript.failed), g = hello_clojurescript.graph_both.call(null, g, h, "#flot-periodic", "#flot"), e = hello_clojurescript.update_scenario.call(null, e), h = document.getElementById("data-body"), h = dommy.core.clear_BANG_.call(null, h), l = document.getElementById("data-body"), m = cljs.core.deref.call(null, 
-        hello_clojurescript.updating_scenario), m = cljs.core.map.call(null, hello_clojurescript.row_from_details, m), l = dommy.core.append_BANG_.call(null, l, m);
+        var e = a[7], b = a[8], f = hello_clojurescript.update_successful_and_failed.call(null, e), g = cljs.core.deref.call(null, hello_clojurescript.successful), h = cljs.core.deref.call(null, hello_clojurescript.failed), g = hello_clojurescript.graph_both.call(null, g, h, "#flot-periodic", "#flot"), h = hello_clojurescript.update_scenario.call(null, e), l = document.getElementById("data-body"), l = dommy.core.clear_BANG_.call(null, l), m = document.getElementById("data-body"), k = cljs.core.deref.call(null, 
+        hello_clojurescript.updating_scenario), k = cljs.core.map.call(null, hello_clojurescript.row_from_details, k), m = dommy.core.append_BANG_.call(null, m, k), k = document.getElementById("rtcp-table-body"), k = dommy.core.clear_BANG_.call(null, k), n = document.getElementById("rtcp-table-body"), p = (new cljs.core.Keyword(null, "rtcp", "rtcp", 1017415073)).cljs$core$IFn$_invoke$arity$1(e), p = hello_clojurescript.rtcp_row_from_details.call(null, p), n = dommy.core.append_BANG_.call(null, n, 
+        p), e = (new cljs.core.Keyword(null, "rtcp", "rtcp", 1017415073)).cljs$core$IFn$_invoke$arity$1(e), e = hello_clojurescript.rtcp_row_from_details.call(null, e), e = cljs.core.pr_str.call(null, e), e = console.log(e);
         a[9] = f;
-        a[10] = g;
+        a[10] = n;
         a[11] = e;
-        a[12] = l;
-        a[13] = h;
+        a[12] = m;
+        a[13] = l;
+        a[14] = k;
+        a[15] = g;
+        a[16] = h;
         return cljs.core.async.impl.ioc_helpers.take_BANG_.call(null, a, 9, b);
       }
       return 5 === b ? (b = a[2], cljs.core.async.impl.ioc_helpers.return_chan.call(null, a, b)) : 4 === b ? (e = a[7], cljs.core.truth_(e) ? a[1] = 6 : a[1] = 7, new cljs.core.Keyword(null, "recur", "recur", 1122293407)) : 3 === b ? (b = a[2], e = (new cljs.core.Keyword(null, "message", "message", 1968829305)).cljs$core$IFn$_invoke$arity$1(b), a[7] = e, a[2] = null, a[1] = 4, new cljs.core.Keyword(null, "recur", "recur", 1122293407)) : 2 === b ? (b = a[2], a[8] = b, cljs.core.async.impl.ioc_helpers.take_BANG_.call(null, 
-      a, 3, b)) : 1 === b ? (b = console.log("Hello world"), f = chord.client.ws_ch.call(null, "ws://localhost:5000/ws"), a[14] = b, cljs.core.async.impl.ioc_helpers.take_BANG_.call(null, a, 2, f)) : null;
+      a, 3, b)) : 1 === b ? (b = console.log("Hello world"), f = chord.client.ws_ch.call(null, "ws://127.0.0.1:5000/ws"), a[17] = b, cljs.core.async.impl.ioc_helpers.take_BANG_.call(null, a, 2, f)) : null;
     });
   }(), b = function() {
     var b = a.call(null);
-    b[cljs.core.async.impl.ioc_helpers.USER_START_IDX] = c__5698__auto___9091;
+    b[cljs.core.async.impl.ioc_helpers.USER_START_IDX] = c__5698__auto___9104;
     return b;
   }();
   return cljs.core.async.impl.ioc_helpers.run_state_machine_wrapped.call(null, b);

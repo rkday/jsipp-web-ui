@@ -1,4 +1,4 @@
-(defproject sipp-web-ui "0.1.0"
+(defproject sipp-web-ui "0.2.0"
   :description "A demo web UI for the jSIPp test tool"
   :url "http://github.com/rkday/jsipp"
   :license {:name "MIT license"}
